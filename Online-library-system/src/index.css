@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+
+:root {
+  --color-primary: #FEF3C7;       /* amber-100 */
+  --color-primary-light: #FDE68A; /* amber-200 */
+  --color-primary-hover: #FCD34D; /* amber-300 */
+  --color-primary-text: #78350F;  /* amber-900 */
+  --color-hover: #92400E;         /* amber-800 */
+  --color-active: #B45309;        /* amber-700 */
+  --color-hover-state: #f5911e;   /* amber-600 */
+}
