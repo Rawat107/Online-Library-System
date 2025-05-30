@@ -22,23 +22,28 @@ const Home = () => {
 
             {/* Categories */}
             <section>
-                <h2 className='text-2xl font-semibold mb-4 text-[var(--color-hover)]'>Browse by Category</h2>
-                <div className='flex flex-wrap gap-4'>
-                    {categories.map((category) => {
-                        const Icon = category.icon;
-                        return (
+                <h2 className='text-2xl font-semibold mb-4 text-[var(--color-hover)] text-center sm:text-left'>
+                    Browse by Category
+                </h2>
 
-                            <Link to={`/books/${category.name}`}
-                                key={category.name}
-                                className='flex items-center gap-2 px-4 py-2 bg-[var(--color-primary-light)] text-[var(--color-primary-text)] rounded hover:bg-[var(--color-primary-hover)] transition'
-                            >
-                                <Icon className="w-5 h-5" />
-                                {category.name}
-                            </Link>
-                        )
+                <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4'>
+                    {categories.map((category) => {
+                    const Icon = category.icon;
+                    return (
+                        <Link
+                        to={`/books/${category.name}`}
+                        key={category.name}
+                        className='flex flex-col items-center justify-center text-center px-4 py-3 bg-[var(--color-primary-light)] text-[var(--color-primary-text)] rounded hover:bg-[var(--color-primary-hover)] transition'
+                        >
+                        <Icon className="w-5 h-5 mb-1" />
+                        <span className="text-sm font-medium">{category.name}</span>
+                        </Link>
+                    );
                     })}
                 </div>
             </section>
+
+
 
             {/* Populary Books */}
             <section>
