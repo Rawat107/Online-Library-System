@@ -173,7 +173,7 @@ const AddBook = () => {
 
                 <button
                     type="submit"
-                    className="bg-[var(--color-primary-hover)] hover:bg-[var(--color-hover-state)] text-white px-6 py-3 rounded font-semibold col-span-1 md:col-span-2 transition"
+                    className="bg-[var(--color-primary-hover)] hover:bg-[var(--color-hover-state)] text-white px-6 py-3 rounded font-semibold col-span-1 md:col-span-2 transition cursor-pointer"
                 >
                     Add Book
                 </button>
