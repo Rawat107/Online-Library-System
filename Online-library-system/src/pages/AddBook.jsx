@@ -5,6 +5,8 @@ import { PlusCircle } from "lucide-react";
 import { addBook } from "../redux/booksSlice";
 import categories from "../utils/categories";
 
+const MAX_IMAGE_SIZE = 500 * 1024;
+
 const AddBook = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -21,6 +23,7 @@ const AddBook = () => {
     });
 
     const [error, setError] = useState('');
+    const [imageError, setImageError] = useState('');
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -29,9 +32,16 @@ const AddBook = () => {
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
         if (file) {
+            // Check image size
+            if (file.size > MAX_IMAGE_SIZE) {
+                setImageError("Image too large. Please use an image smaller than 500 KB or provide a URL.");
+                return;
+            }
+
             const reader = new FileReader();
             reader.onloadend = () => {
                 setForm(prev => ({ ...prev, coverImage: reader.result }));
+                setImageError('');
             };
             reader.readAsDataURL(file);
         }
@@ -48,6 +58,12 @@ const AddBook = () => {
             setError("All fields are required.");
             return;
         }
+
+        if (form.rating > 5 || form.rating < 0) {
+            setError("Rating must be between 0 and 5.");
+            return;
+        }
+
 
         const newBook = {
             ...form,
@@ -89,7 +105,7 @@ const AddBook = () => {
                 <input
                     type="date"
                     name="publishDate"
-                    className="border p-3 rounded"
+                    className="border p-3 rounded cursor-poi"
                     value={form.publishDate}
                     onChange={handleChange}
                 />
@@ -109,6 +125,8 @@ const AddBook = () => {
                     className="border p-3 rounded"
                     value={form.rating}
                     onChange={handleChange}
+                    min="0"
+                    max="5"
                 />
 
                 {/* Category Dropdown */}
@@ -131,6 +149,9 @@ const AddBook = () => {
                     <label className="block text-sm font-medium text-gray-700">
                         Cover Image (URL or Upload)
                     </label>
+                    <p className="text-xs text-gray-500 mb-1">
+                        Images must be under 500 KB. For larger images, please use a URL.
+                    </p>
                     <input
                         type="url"
                         name="coverImage"
@@ -152,7 +173,12 @@ const AddBook = () => {
                         className="hidden"
                         onChange={handleImageUpload}
                     />
-                    {form.coverImage && (
+
+                    {imageError && (
+                        <p className="text-sm text-red-600">{imageError}</p>
+                    )}
+
+                    {form.coverImage && !imageError && (
                         <img
                             src={form.coverImage}
                             alt="Preview"
@@ -160,6 +186,7 @@ const AddBook = () => {
                         />
                     )}
                 </div>
+
 
                 {/* Description */}
                 <textarea
