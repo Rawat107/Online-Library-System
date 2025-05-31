@@ -1,6 +1,8 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ArrowLeft, Star } from "lucide-react";
+import NotFound from "./NotFound";
+
 
 const BookDetails = () => {
     const { id } = useParams();
@@ -10,18 +12,9 @@ const BookDetails = () => {
     )
 
     if (!book) {
-        return (
-            <section className="text-center mt-10">
-                <p className="text-xl text-[var(--color-active)]">Book not found.</p>
-                <button
-                    onClick={() => navigate('/books')}
-                    className="mt-4 px-4 py-2 bg-[var(--color-primary-light)] text-[var(--color-active)] rounded hover:bg-[var(--color-primary-hover)] transition"
-                >
-                    Go back to Browse
-                </button>
-            </section>
-        )
+        return <NotFound />;
     }
+    
     return (
         <section className="max-w-4xl mx-auto p-6 space-x-6 bg-[var(--color-primary)] rounded-md shadow-md">
             

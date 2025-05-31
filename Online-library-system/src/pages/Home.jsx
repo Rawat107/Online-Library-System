@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { BookOpen, Star } from 'lucide-react'
 import categories from '../utils/categories';
-
+import NotFound from './NotFound';
 
 const Home = () => {
 
