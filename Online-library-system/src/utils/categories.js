@@ -16,7 +16,7 @@ const categories = [
   { name: 'Historical', icon: Landmark },
   { name: 'Thriller', icon: Eye },
   { name: 'Gothic', icon: Ghost },
-  { name: 'Drama', icon: Mic },        // 🔄 Replaced invalid Theatre with Mic
+  { name: 'Drama', icon: Mic },        
   { name: 'Philosophy', icon: Brain },
   { name: 'Tragedy', icon: Skull },
   { name: 'Classic', icon: Library },
