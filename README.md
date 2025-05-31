@@ -4,9 +4,9 @@
 
 ---
 
-### 🌐 Live Demo
+### Live Demo
 
-🔗 **[View Live on Render](https://online-library-system-4tzj.onrender.com)**
+**[View Live on Render](https://online-library-system-4tzj.onrender.com)**
 
 ---
 
